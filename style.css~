@@ -215,10 +215,7 @@ INPUT
 	box-shadow:
 		.05em .05em .4em .1em rgba(0,0,0,.8) inset
 }
-.in-page
-	INPUT
-		[TYPE="radio"]
-	+	LABEL
+.in-page INPUT[TYPE="radio"]+LABEL
 {
 	display:
 		none

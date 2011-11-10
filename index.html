@@ -1,279 +1,366 @@
 <!DOCTYPE HTML>
-<META charset=UTF-8>
+<!--
+{
+	NOTE:	DOCTYPE HTML in UPPERCASE, to ensure no-quirks-mode and if possible/able HtML5 parsing
+;
+	ALSO:	ASCII-Fallback if Unicode not available
+;
+	ALSO:	Reminder for using UPPERCASE to make content readable as any kind of HtML but definately not as XHTML/XML
+;
+	NOTE:	HTML normally should be written lowercase, to make polyglot markup possible, but that is not intended
+;
+	ALSO:	some parsers try to categorize the content as machine-generated if in lowercase, they extend automagically to SYSTEM-string
+;
+	ALSO:	if HTML would be lowercase, some parsers try to perform SGML-parsing for unknown elements which could break the DOM
+;
+	ALSO:	UPPERCASE HTML should remind of using it site-wide for boolean attributes, like DEFER, ASYNC, CHECKED, etc.
+}
+-->
+<META CHARSET=UTF-8>
+<!--
+{
+	NOTE:	Explicit set of charset to UTF-8 in HtML5-style
+;
+	ALSO:	only readable by HtML-Parsers, because XML/XHtML would have had to be written lowercase-tag and quoted-attribute-value, as also via name/content value-pair
+;
+	NOTE: Due to parsing-position before TITLE it enables UTF-8 general-script usage for TITLE-element if needed
+}
+-->
 <TITLE>Animatable: One property, two values, endless possiblities</TITLE>
-<LINK href=style.css rel=stylesheet type=text/css>
-<SCRIPT src=../prefixfree/stylefix.js></SCRIPT>
-<SCRIPT src=../prefixfree/prefixfree.js></SCRIPT>
+<!--
+{
+	NOTE: If a proper TITLE is given, it can also be used, in combination with the hash of the document-base or document-root -locator to generate a session-id for the site/page/app, to ensure capsulated namespaces for scripts
+}
+-->
+<!--
+<BASE HREF=../>
+-->
+<!--
+{
+	NOTE: A BASE should be given to quick the initial parsing of [A,LINK,OBJECT,EMBED,IFRAME,STYLE,SCRIPT,FORM]-elements
+}
+-->
+<LINK HREF=style.css REL=STYLESHEET>
+<!--
+{
+	NOTE: Normally TYPE=TEXT/HTML has to be given, even in HtML5, but i want to ensure that this is only parsable as HTML/CSS by browsers
+;
+	ALSO: add TYPE=TEXT/HTML if needed, for usage in converters or compilers, e.g. java- or php-based if they do not preset to CSS as style-language
+;
+	NOTE: omitting TYPE=TEXT/HTML gives you the possibility to use old-style/netscape-syntax, due to the fact the parser pre-transforms to the next ASCII-equivalent; means instead of using : you can use = for example; useful for fast validation-ignoring DOM-scripting on styles via [PHP,ASP,JSP,ETC]-server-side-languages which just inject cleartext of XML/XHTML/HTML-streams, by deleting special-tokens
+}
+-->
+<SCRIPT SRC=../prefixfree/stylefix.js></SCRIPT>
+<!--
+{
+	NOTE:	If used locally it jumps upwards to your code-repository-directory where you cloned your forks in
+;
+	ALSO:	If used online, can be used with a BASE, because absolute paths can be mixed with relationals; this would assume that you e.g.: set your base to raw.github.com/my-name/my-project-name/ ; so it can jump up to your github-code-repo (raw.github.com/my-name/)and then go down into the given SRC
+;
+	NOTE:	TYPE=TEXT/JAVASCRIPT is omitted, because any browser that can render HtML is preset to its latest javascript-engine if one is available
+;
+	ALSO:	SCRIPT-basing isn't allowed anymore, fellas
+;
+	ALSO:	LANGUAGE='JavaScript 1.1' or stuff like that is nonsense; because 1. it is not allowed in that manner in HtML5, 2. it is nonsense, because the parsers can convert themselves the loaded scripts, so they are usable IF NOT ANY LANGUAGE-TYPE IS EXPLICITLY SET
+}
+-->
+<SCRIPT SRC=../prefixfree/prefixfree.js></SCRIPT>
 <HGROUP>
-	<H1><A href=#>Animatable</A></H1>
+	<H1><A HREF=#>Animatable</A></H1>
+	<!--
+	{
+		NOTE:	Using an Anchor inside a heading is absolute nonsense, though functional; It complicates/eliminates rendering in text-browsers and mobile-browsers
+	;
+		TASK:	A better solution for the FEEL of the UI would be using an anchor around the whole HGROUP, but that won't help either, due to nesting rules
+	;
+		ALSO:	Best solution is to have a pure button which is arranged visually but separated from the heading; That would also enable text- and mobile-browsers to parse it correct
+	;
+		ALSO:	Perfect would be the usage of event-handlers on the container of the headings, to ensure that only browsers, which have the ability of [DOM,CSS]-access would render it
+	;
+		ALSO:	The usage of anchors is only useful for getting a full history, due to the fact the hash-changes (and that can be captured), which is normally not possible if [XHR,AJAX,JAH]-functions are used;
+	}
+	-->
 	<H2>One property, two values, endless possiblities</H2>
 </HGROUP>
-<INPUT type=radio name=animate id=on-hover checked>
-<LABEL for=on-hover>Animate on hover</LABEL>
-<INPUT type=radio name=animate id=all>
-<LABEL for=all>Animate all</LABEL>
+<!--
+{
+	NOTE:	HGROUP is a HtML5-tag that should group a bunch of headings, but at the moment this is truly useless, except for graphical exposure by using the tag-scheme via CSS-Selectors for an anonymous constitutional class
+;
+	ALSO:	HGROUP normally should been parsed like the prototype-method in javascript, means: the first heading (e.g.: H1) in the set of headings, should be ignored in its visual representation, instead been used as a sorting-label for nesting headings from HGROUPS automagically into the internal headings-collection; So it is thought as a HEADING-CLUSTER-COLLECTOR, not as a representational-only-element
+;
+	ALSO:	No actual Browser is able to collect heading-clusters, yet
+;
+	ALSO:	It seems the here revised original definition of HGROUP will be changed to the actual usage, due to misinterpretation of developers and massive usage in a pure representational manner
+;
+	NOTE:	Personally i think, that if HGROUP won't be usable as HEADING-CLUSTER-COLLECTOR, it is totally dumb to let it reside as a representational-container: It complicates parsing of heading-nestings, especially if used parallel to Headings in SECTIONs
+}
+-->
+<INPUT TYPE=radio NAME=animate ID=on-hover CHECKED>
+<LABEL FOR=on-hover>Animate on hover</LABEL>
+<INPUT TYPE=radio NAME=animate ID=all>
+<LABEL FOR=all>Animate all</LABEL>
 
-<DIV role=main>
+<DIV ROLE=main>
 	<A
-		data-property=background-color
-		data-from=slategray
-		data-to=black
+		DATA-property=background-color
+		DATA-from=slategray
+		DATA-to=black
 		>
 	</A>
 	<A
-		data-property=background-position
-		data-from="0 0"
-		data-to="100% 100%"
-		style="background-image:linear-gradient(-45deg, transparent 25%, black 25%, black 50%, transparent 50%, transparent 75%, black 75%, black); background-size:50px 50px"
+		DATA-property=background-position
+		DATA-from="0 0"
+		DATA-to="100% 100%"
+		STYLE="background-image:linear-gradient(-45deg, transparent 25%, black 25%, black 50%, transparent 50%, transparent 75%, black 75%, black); background-size:50px 50px"
 		>
 	</A>
 	<A
-		data-property=background-position
-		data-from="3px 0, 3px 0, 15px -150px, 15px -150px"
-		data-to="3px -70px, 3px -70px, 15px -80px, 15px -80px"
-		style="background-color: #E04332; background-repeat: repeat-x; background-size: 24px 300px; background-image: linear-gradient(-45deg, slategray 25%, transparent 25%), linear-gradient(45deg, transparent 75%, slategray 75%), linear-gradient(45deg, slategray 25%, transparent 25%), linear-gradient(-45deg, transparent 75%, slategray 75%);"
-		data-author=kizmarh
+		DATA-property=background-position
+		DATA-from="3px 0, 3px 0, 15px -150px, 15px -150px"
+		DATA-to="3px -70px, 3px -70px, 15px -80px, 15px -80px"
+		STYLE="background-color: #E04332; background-repeat: repeat-x; background-size: 24px 300px; background-image: linear-gradient(-45deg, slategray 25%, transparent 25%), linear-gradient(45deg, transparent 75%, slategray 75%), linear-gradient(45deg, slategray 25%, transparent 25%), linear-gradient(-45deg, transparent 75%, slategray 75%);"
+		DATA-author=kizmarh
 		>
 	</A>
 	<A
-		data-property=background-size
-		data-from="5px 5px"
-		data-to="150px 150px"
-		style="background-image: repeating-radial-gradient(transparent, transparent 9px, black 11px, black 20px); background-position:center"
+		DATA-property=background-size
+		DATA-from="5px 5px"
+		DATA-to="150px 150px"
+		STYLE="background-image: repeating-radial-gradient(transparent, transparent 9px, black 11px, black 20px); background-position:center"
 		>
 	</A>
 	<A
-		data-property=border-radius
-		data-from=0
-		data-to=50%
+		DATA-property=border-radius
+		DATA-from=0
+		DATA-to=50%
 		>
 	</A>
 	<A
-		data-property=border-radius
-		data-from="0 100%"
-		data-to="100% 0"
+		DATA-property=border-radius
+		DATA-from="0 100%"
+		DATA-to="100% 0"
 		>
 	</A>
 	<A
-		data-property=border-width
-		data-from=0
-		data-to=75px
-		style="border-style:solid; border-color: black;"
+		DATA-property=border-width
+		DATA-from=0
+		DATA-to=75px
+		STYLE="border-style:solid; border-color: black;"
 		>
 	</A>
 	<A
-		data-property=border-width
-		data-from=0
-		data-to=35px
-		style="border-style:dashed; border-color: black;"
+		DATA-property=border-width
+		DATA-from=0
+		DATA-to=35px
+		STYLE="border-style:dashed; border-color: black;"
 		>
 	</A>
 	<A
-		data-property=border-width
-		data-from=0
-		data-to=75px
-		style="border-style:double; border-color: black;"
+		DATA-property=border-width
+		DATA-from=0
+		DATA-to=75px
+		STYLE="border-style:double; border-color: black;"
 		>
 	</A>
 	<A
-		data-property=box-shadow
-		data-from="0 0 black"
-		data-to="0 150px 10px -50px rgba(0,0,0,.5)"
+		DATA-property=box-shadow
+		DATA-from="0 0 black"
+		DATA-to="0 150px 10px -50px rgba(0,0,0,.5)"
 		>
 	</A>
 	<A
-		data-property=box-shadow
-		data-from="none"
-		data-to="inset -75px -75px 400px #000"
-		data-author=yuritkachenko
+		DATA-property=box-shadow
+		DATA-from="none"
+		DATA-to="inset -75px -75px 400px #000"
+		DATA-author=yuritkachenko
 		>
 	</A>
 	<A
-		data-property=box-shadow
-		data-from="inset 0 0 75px 75px slategray, 0 0 0 slategray"
-		data-to="inset 0 0 35px 35px transparent, 0 0 75px 50px transparent"
-		style="background: transparent; border-radius: 1px;"
-		data-author=kizmarh
+		DATA-property=box-shadow
+		DATA-from="inset 0 0 75px 75px slategray, 0 0 0 slategray"
+		DATA-to="inset 0 0 35px 35px transparent, 0 0 75px 50px transparent"
+		STYLE="background: transparent; border-radius: 1px;"
+		DATA-author=kizmarh
 		>
 	</A>
 	<A
-		data-property=color
-		data-from=white
-		data-to=black
+		DATA-property=color
+		DATA-from=white
+		DATA-to=black
 		>
 	</A>
 	<A
-		data-property=font-size
-		data-from=60px
-		data-to=300px
+		DATA-property=font-size
+		DATA-from=60px
+		DATA-to=300px
 		>
 	</A>
 	<A
-		data-property=height
-		data-from=150px
-		data-to=0
+		DATA-property=height
+		DATA-from=150px
+		DATA-to=0
 		>
 	</A>
 	<A
-		data-property=letter-spacing
-		data-from=0
-		data-to=100px
+		DATA-property=letter-spacing
+		DATA-from=0
+		DATA-to=100px
 		>
 	</A>
 	<A
-		data-property=line-height
-		data-from=10px
-		data-to=300px
+		DATA-property=line-height
+		DATA-from=10px
+		DATA-to=300px
 		>
 	</A>
 	<A
-		data-property=opacity
-		data-from=1
-		data-to=0
+		DATA-property=opacity
+		DATA-from=1
+		DATA-to=0
 		>
 	</A>
 	<A
-		data-property=outline-width
-		data-from=0
-		data-to=100px
-		style="outline-color:black; outline-style: solid;"
+		DATA-property=outline-width
+		DATA-from=0
+		DATA-to=100px
+		STYLE="outline-color:black; outline-style: solid;"
 		>
 	</A>
 	<A
-		data-property=outline-offset
-		data-from=-5px
-		data-to=30px
-		style="outline-style: dashed; outline-color:slategray;"
-		data-author=mkuehnel
+		DATA-property=outline-offset
+		DATA-from=-5px
+		DATA-to=30px
+		STYLE="outline-style: dashed; outline-color:slategray;"
+		DATA-author=mkuehnel
 		>
 	</A>
 	<A
-		data-property=outline-color
-		data-from=transparent
-		data-to=red
-		style="outline-width: 30px; outline-style: solid;"
-		data-author=mkuehnel
+		DATA-property=outline-color
+		DATA-from=transparent
+		DATA-to=red
+		STYLE="outline-width: 30px; outline-style: solid;"
+		DATA-author=mkuehnel
 		>
 	</A>
 	<A
-		data-property=padding
-		data-from=0
-		data-to="50px 200px 50px 50px"
-		data-author=steno
+		DATA-property=padding
+		DATA-from=0
+		DATA-to="50px 200px 50px 50px"
+		DATA-author=steno
 		>
 	</A>
 	<A
-		data-property=text-indent
-		data-from=0
-		data-to=100px
+		DATA-property=text-indent
+		DATA-from=0
+		DATA-to=100px
 		>
 	</A>
 	<A
-		data-property=text-shadow
-		data-from="0 0 black"
-		data-to="20px 20px 10px rgba(0,0,0,.5)"
+		DATA-property=text-shadow
+		DATA-from="0 0 black"
+		DATA-to="20px 20px 10px rgba(0,0,0,.5)"
 		>
 	</A>
 	<A
-		data-property=text-shadow
-		data-from="0 0 0 white"
-		data-to="0 0 10px white"
-		style="color: transparent;"
-		data-author=bartaz
+		DATA-property=text-shadow
+		DATA-from="0 0 0 white"
+		DATA-to="0 0 10px white"
+		STYLE="color: transparent;"
+		DATA-author=bartaz
 		>
 	</A>
 	<A
-		data-property=text-shadow
-		data-from="0 0 white"
-		data-to="0 0 rgba(255,255,255,0), -45px -45px 0 red, -30px -30px 0 orange, -15px -15px 0 yellow, 0 0 0 green, 15px 15px 0 blue, 30px 30px 0 indigo, 45px 45px 0 violet" style="color: transparent"
-		data-author=kizmarh
+		DATA-property=text-shadow
+		DATA-from="0 0 white"
+		DATA-to="0 0 rgba(255,255,255,0), -45px -45px 0 red, -30px -30px 0 orange, -15px -15px 0 yellow, 0 0 0 green, 15px 15px 0 blue, 30px 30px 0 indigo, 45px 45px 0 violet" STYLE="color: transparent"
+		DATA-author=kizmarh
 		>
 	</A>
 	<A
-		data-property=top
-		data-from=0
-		data-to=100px
-		style="position:relative"
+		DATA-property=top
+		DATA-from=0
+		DATA-to=100px
+		STYLE="position:relative"
 		>
 	</A>
 	<A
-		data-property=transform
-		data-from=rotate(0deg)
-		data-to=rotate(360deg)
+		DATA-property=transform
+		DATA-from=rotate(0deg)
+		DATA-to=rotate(360deg)
 		>
 	</A>
 	<A
-		data-property=transform
-		data-from=scale(1)
-		data-to=scale(2)
+		DATA-property=transform
+		DATA-from=scale(1)
+		DATA-to=scale(2)
 		>
 	</A>
 	<A
-		data-property=transform
-		data-from=skew(0deg)
-		data-to=skew(180deg)
+		DATA-property=transform
+		DATA-from=skew(0deg)
+		DATA-to=skew(180deg)
 		>
 	</A>
 	<A
-		data-property=transform
-		data-from="rotate(0deg) scale(1)"
-		data-to="rotate(360deg) scale(0)"
+		DATA-property=transform
+		DATA-from="rotate(0deg) scale(1)"
+		DATA-to="rotate(360deg) scale(0)"
 		>
 	</A>
 	<A
-		data-property=transform
-		data-from="perspective(400px) rotateY(0deg)"
-		data-to="perspective(400px) rotateY(360deg)"
+		DATA-property=transform
+		DATA-from="perspective(400px) rotateY(0deg)"
+		DATA-to="perspective(400px) rotateY(360deg)"
 		>
 	</A>
 	<A
-		data-property=transform
-		data-from="perspective(400px) rotateX(0deg)"
-		data-to="perspective(400px) rotateX(360deg)"
-		data-author=calvein
+		DATA-property=transform
+		DATA-from="perspective(400px) rotateX(0deg)"
+		DATA-to="perspective(400px) rotateX(360deg)"
+		DATA-author=calvein
 		>
 	</A>
 	<A
-		data-property=transform
-		data-from="perspective(400px) rotateY(0deg)"
-		data-to="perspective(400px) translateZ(150px) rotateY(180deg)"
-		data-author=bartaz
+		DATA-property=transform
+		DATA-from="perspective(400px) rotateY(0deg)"
+		DATA-to="perspective(400px) translateZ(150px) rotateY(180deg)"
+		DATA-author=bartaz
 		>
 	</A>
 	<A
-		data-property=transform
-		data-from="perspective(400px) translate3d(0,0,0) rotateX(0) rotateY(0) rotateZ(0)"
-		data-to="perspective(400px) translate3d(0,0,-5000px) rotateX(720deg) rotateY(360deg) rotateZ(-360deg)"
-		data-author=bartaz
+		DATA-property=transform
+		DATA-from="perspective(400px) translate3d(0,0,0) rotateX(0) rotateY(0) rotateZ(0)"
+		DATA-to="perspective(400px) translate3d(0,0,-5000px) rotateX(720deg) rotateY(360deg) rotateZ(-360deg)"
+		DATA-author=bartaz
 		>
 	</A>
 	<A
-		data-property=transform
-		data-from="perspective(400px) rotate3d(1,1,0,0deg)"
-		data-to="perspective(400px) rotate3d(1,1,0,180deg)"
-		data-author=bartaz
+		DATA-property=transform
+		DATA-from="perspective(400px) rotate3d(1,1,0,0deg)"
+		DATA-to="perspective(400px) rotate3d(1,1,0,180deg)"
+		DATA-author=bartaz
 		>
 	</A>
 	<A
-		data-property=transform-origin
-		data-from="50% 50%"
-		data-to="0 100%"
-		style="transform:rotate(45deg)"
+		DATA-property=transform-origin
+		DATA-from="50% 50%"
+		DATA-to="0 100%"
+		STYLE="transform:rotate(45deg)"
 		>
 	</A>
 	<A
-		data-property=width
-		data-from=150px
-		data-to=330px
-		data-author=mkuehnel
+		DATA-property=width
+		DATA-from=150px
+		DATA-to=330px
+		DATA-author=mkuehnel
 		>
 	</A>
 </DIV>
 
-<SECTION id=info>
+<SECTION ID=info>
 	<H1>box-shadow</H1>
-	<A href=# title=Previous>◀</A>
-	<A href=# title=Next>▶</A>
+	<A HREF=# TITLE=Previous>◀</A>
+	<A HREF=# TITLE=Next>▶</A>
 	<DL>
 		<DT>From:
 		<DD>0 0 black
@@ -286,31 +373,31 @@
 	</DL>
 </SECTION>
 
-<FOOTER>Made by <A href=http://leaverou.me>Lea Verou</A> with care</FOOTER>
+<FOOTER>Made by <A HREF=http://leaverou.me>Lea Verou</A> with care</FOOTER>
 
-<SCRIPT src=index.js></SCRIPT>
+<SCRIPT SRC=index.js></SCRIPT>
 
 <A
-	href=https://github.com/leaverou/animatable
-	target=_blank
-	class=github-ribbon
+	HREF=https://github.com/leaverou/animatable
+	TARGET=_blank
+	CLASS=github-ribbon
 	>
 	<img
-		src=https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67
-		alt="Fork me on GitHub"
+		SRC=https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67
+		ALT="Fork me on GitHub"
 	>
 </A>
 
 <A
-	href=https://twitter.com/share
-	class=twitter-share-button
-	data-count=vertical
-	data-via=LeaVerou
+	HREF=https://twitter.com/share
+	CLASS=twitter-share-button
+	DATA-count=vertical
+	DATA-via=LeaVerou
 	>Tweet
 </A>
-<SCRIPT src=https://platform.twitter.com/widgets.js></SCRIPT>
+<SCRIPT SRC=https://platform.twitter.com/widgets.js></SCRIPT>
 
-<SCRIPT src=http://www.google-analytics.com/ga.js></SCRIPT>
+<SCRIPT SRC=http://www.google-analytics.com/ga.js></SCRIPT>
 <SCRIPT>
 try
 {
